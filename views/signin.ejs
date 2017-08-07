@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="/javascript/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="/stylesheet/signin.css">
+	<!--<script type="text/javascript" src = "/javascript/signin.js"></script>-->
+
+</head>
+<body>
+	<div id="all">
+		<form action="/check " method="post">
+		<h1>用户登录</h1>
+		<p id="errorInfo"><%= errorInfo %></p>
+		<p>用户名<input type="text" name="username" id="username" value=""></p>
+		<p>密码<input type="password" name="password" id="password" value=""></p>
+		<p><input type="submit" id="submit" value="登录">
+		<input type="button" id="regist" value="注册"></p>
+	</div>
+	<script type="text/javascript" src="/javascript/jquery.js"></script>
+	<script type="text/javascript" src="javascripts/bootstrap.min.js"></script>
+	<script type="text/javascript">
+        $().ready(function () {
+            $("#regist").click(function () {
+                console.log(12313);
+                window.location.href='/regist'
+            })
+            $("#password").change(checkPasswordForm);
+        })
+        function checkPasswordForm() {
+            var patten = new RegExp(/^[a-z0-9_-]{6,12}$/);
+            var name = $(this).val();
+            if (!patten.test(name)) {
+                $(this).attr("class", "red")
+                $("#errorInfo").text("6~12位数字、大小写字母、中划线、下划线");
+                $("#errorInfo").attr("class","err");
+            } else {
+                $("#errorInfo").text("请输入信息");
+                $(this).removeClass("red")
+                $("#errorInfo").attr("class","correct");
+            }
+        }
+	</script>
+</body>
+</html>
